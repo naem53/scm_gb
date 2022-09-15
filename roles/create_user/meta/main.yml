@@ -1,0 +1,10 @@
+galaxy_info:
+  role_name: create_user
+  description: create user
+  author: naem
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: linux
+      versions:
+        - all
