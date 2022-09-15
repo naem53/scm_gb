@@ -15,8 +15,6 @@
 - name: generate random text for test.txt
   ansible.builtin.shell:
     cmd: head /dev/urandom | tr -dc A-Za-z0-9 | head -c10 > /tmp/create_dir/test.txt
-    args:
-      executable: /bin/bash
 
 - name: get remote file
   ansible.builtin.get_url:
