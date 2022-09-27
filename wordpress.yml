@@ -2,7 +2,7 @@
 - hosts: local
 
   vars_files:
-    - vars/wordpress.yml
+    - roles/wordpress/vars/wordpress.yml
   roles:
     - geerlingguy.nginx
     - robertdebock.php_fpm
