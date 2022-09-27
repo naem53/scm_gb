@@ -1,0 +1,17 @@
+---
+- hosts: local
+
+  vars_files:
+    - roles/wordpress/vars/wordpress.yml
+    - roles/wordpress/vars/vault_db_pass.yml
+  roles:
+    - role: geerlingguy.nginx
+      tags: nginx
+    - role: robertdebock.php_fpm
+      tags:
+        - fpm
+        - php
+    - role: geerlingguy.mysql
+      tags: mysql
+    - role: wordpress
+      tags: web
