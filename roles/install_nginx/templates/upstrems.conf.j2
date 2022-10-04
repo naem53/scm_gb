@@ -1,0 +1,5 @@
+{% for host in groups['apps'] %}
+upstrem {{ hostvars[host]['nginx_upstrem_host'] }} {
+  {{ hostvars[host]['nginx_upstrem_host'] }}:8080
+}
+{% endfor %}

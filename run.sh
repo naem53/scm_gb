@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ansible-playbook all.yml
+ansible-playbook all.yml "$@"

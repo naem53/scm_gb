@@ -1,7 +1,0 @@
----
-- name: create user
-  ansible.builtin.user:
-    name: OS
-    comment: test user OS
-    uid: 2001
-    shell: /bin/bash

@@ -1,10 +1,10 @@
 galaxy_info:
-  role_name: create_user
-  description: create user
+  role_name: install nginx
+  description: install nginx
   author: naem
   license: MIT
   min_ansible_version: 2.9
   platforms:
     - name: linux
       versions:
-        - all
+        - debian

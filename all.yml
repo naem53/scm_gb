@@ -2,5 +2,5 @@
 - name: configuration system
   hosts: local
   roles:
-    - create_user
-    - create_dir
+    - role: install_nginx
+      tags: nginx
