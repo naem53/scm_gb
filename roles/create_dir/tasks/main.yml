@@ -1,23 +1,16 @@
 ---
-- name: create directory
-  ansible.builtin.file:
-    path: /tmp/create_dir
-    state: directory
-    mode: '0755'
+- name: create dir
+  include_tasks: create_dir.yml
+  when: create_dir | default(false) | bool
 
 - name: create file
-  ansible.builtin.file:
-    path: /tmp/create_dir/test.txt
-    owner: root
-    group: root
-    mode: '0644'
+  include_tasks: create_file.yml
+  when: create_file | default(false) | bool
 
 - name: generate random text for test.txt
-  ansible.builtin.shell:
-    cmd: head /dev/urandom | tr -dc A-Za-z0-9 | head -c10 > /tmp/create_dir/test.txt
-
-- name: get remote file
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/ansible/ansible/devel/README.rst
-    dest: /tmp/create_dir/readme.rst
-    mode: '0644'
+  include_tasks: gen_text.yml
+  when: gen_text | default(false) | bool
+  
+- name: generate random text for test.txt
+  include_tasks: get_file.yml
+  when: get_file | default(false) | bool

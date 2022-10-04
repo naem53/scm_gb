@@ -1,0 +1,9 @@
+users:
+  - login: "test1"
+    pass: "test1"
+    home: "/home/test1"
+    shell: "/bin/bash"
+  - login: "test2"
+    pass: "test2"
+    home: "/home/test1"
+    shell: "/bin/false"

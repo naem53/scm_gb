@@ -2,5 +2,9 @@
 - name: configuration system
   hosts: local
   roles:
-    - create_user
-    - create_dir
+    - role: create_user
+      tags: user
+    - role: create_dir
+      tags:
+        - file
+        - dir

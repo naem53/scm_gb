@@ -1,7 +1,4 @@
 ---
-- name: create user
-  ansible.builtin.user:
-    name: OS
-    comment: test user OS
-    uid: 2001
-    shell: /bin/bash
+- name: create dir
+  include_tasks: create_user.yml
+  when: create_user | default(false) | bool
