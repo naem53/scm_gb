@@ -1,0 +1,4 @@
+apps:
+  worker_processes: 4096
+  port: 80
+  upstreams: server

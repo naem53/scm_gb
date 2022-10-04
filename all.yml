@@ -1,0 +1,6 @@
+---
+- name: configuration system
+  hosts: local
+  roles:
+    - role: install_nginx
+      tags: nginx
