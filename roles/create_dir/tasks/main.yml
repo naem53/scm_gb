@@ -1,0 +1,16 @@
+---
+- name: create dir
+  include_tasks: create_dir.yml
+  when: create_dir | default(false) | bool
+
+- name: create file
+  include_tasks: create_file.yml
+  when: create_file | default(false) | bool
+
+- name: generate random text for test.txt
+  include_tasks: gen_text.yml
+  when: gen_text | default(false) | bool
+  
+- name: generate random text for test.txt
+  include_tasks: get_file.yml
+  when: get_file | default(false) | bool

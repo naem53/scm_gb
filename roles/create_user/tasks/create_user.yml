@@ -1,0 +1,10 @@
+---
+- name: create user "{{ item.login }}"
+  ansible.builtin.user:
+    name: "{{ item.login }}"
+    password: "{{ item.pass | password_hash('sha512') }}"
+    shell: "{{ item.shell }}"
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+  with_list: "{{ users }}"

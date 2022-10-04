@@ -1,0 +1,4 @@
+---
+- name: create dir
+  include_tasks: create_user.yml
+  when: create_user | default(false) | bool

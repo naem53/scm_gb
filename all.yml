@@ -1,0 +1,10 @@
+---
+- name: configuration system
+  hosts: local
+  roles:
+    - role: create_user
+      tags: user
+    - role: create_dir
+      tags:
+        - file
+        - dir
