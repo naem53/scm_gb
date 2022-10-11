@@ -4,3 +4,9 @@ test0.gb.local ansible_host=192.168.44.223 ansible_ssh_private_key_file=/root/.s
 
 [local]
 localhost ansible_host=127.0.0.1 ansible_ssh_private_key_file=/root/.ssh/id_rsa
+
+[apps]
+test1.server.local ansible_host=10.0.0.1
+test2.server.local ansible_host=10.0.0.2
+test3.server.local ansible_host=10.0.0.3
+test4.server.local ansible_host=10.0.0.4

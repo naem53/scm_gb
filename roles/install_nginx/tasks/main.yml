@@ -1,0 +1,26 @@
+---
+- pause:
+    prompt: "Please enter the type install nginx: docker or vm?"
+    echo: true
+  register: input
+
+- name: set fact
+  set_fact:
+    type: "{{ input.user_input }}"
+
+- name: check type
+  set_fact:
+    vm: "{{ 'vm' if type == 'vm' }}"
+    docker: "{{ 'docker' if type == 'docker' }}"
+
+- name: install nginx on vm
+  include_tasks: vm.yml
+  when: 'vm in item.value'
+  loop:
+    - value: "{{ nginx.deploy_type }}"
+
+- name: install nginx on docker
+  include_tasks: docker.yml
+  when: 'docker in item.value'
+  loop:
+    - value: "{{ nginx.deploy_type }}"

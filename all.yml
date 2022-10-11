@@ -1,0 +1,12 @@
+---
+- name: nginx
+  hosts: local
+  roles:
+    - role: install_nginx
+      tags: nginx
+    - role: service_diagnostics
+      tags: check
+    - role: checksum
+      tags: checksum
+    - role: check_health
+      tags: check_health

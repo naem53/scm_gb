@@ -1,0 +1,8 @@
+apps:
+  worker_processes: 4
+  port: 80
+  upstreams: server
+nginx:
+  deploy_type:
+    - vm
+    - docker

@@ -1,0 +1,20 @@
+---
+- name: (nginx) check listen port
+  wait_for:
+    host: 127.0.0.1
+    port: 80
+    delay: 5
+  register: result
+
+- name: (nginx) print result - check listen port
+  debug:
+    var: result.state
+
+- name: (nginx) check run service
+  ansible.builtin.shell:
+    cmd: systemctl status nginx
+  register: result
+
+- name: (nginx) print result - check run service
+  debug:
+    var: result.stdout_lines
