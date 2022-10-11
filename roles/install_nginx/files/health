@@ -1,0 +1,4 @@
+{
+  "nginx": true,
+  "mysql": true
+}

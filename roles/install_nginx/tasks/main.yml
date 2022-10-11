@@ -1,45 +1,26 @@
 ---
-- name: install nginx
-  ansible.builtin.apt:
-    name: nginx
-    state: latest
-    install_recommends: true
-  when: ansible_os_family == "Debian"
-  notify:
-    - nginx systemd
+- pause:
+    prompt: "Please enter the type install nginx: docker or vm?"
+    echo: true
+  register: input
 
-- name: configure nginx
-  block:
-  - name: replace nginx.conf
-    template:
-      src: templates/nginx.conf.j2
-      dest: /etc/nginx/nginx.conf
+- name: set fact
+  set_fact:
+    type: "{{ input.user_input }}"
 
-  - name: create server.conf
-    template:
-      src: templates/server.conf.j2
-      dest: /etc/nginx/sites-available/server.conf
+- name: check type
+  set_fact:
+    vm: "{{ 'vm' if type == 'vm' }}"
+    docker: "{{ 'docker' if type == 'docker' }}"
 
-  - name: create symlink
-    ansible.builtin.file:
-      src: /etc/nginx/sites-available/server.conf
-      dest: /etc/nginx/sites-enabled/server.conf
-      force: yes
-      state: link
+- name: install nginx on vm
+  include_tasks: vm.yml
+  when: 'vm in item.value'
+  loop:
+    - value: "{{ nginx.deploy_type }}"
 
-  - name: Remove file (delete file)
-    ansible.builtin.file:
-      path: /etc/nginx/sites-enabled/default
-      state: absent
-  notify:
-    - nginx restart
-
-- name: Check that you can connect (GET) to a page and it returns a status 200
-  ansible.builtin.uri:
-    url: http://localhost
-    return_content: yes
-  register: get
-
-- name: print get
-  debug:
-   var: get.status
+- name: install nginx on docker
+  include_tasks: docker.yml
+  when: 'docker in item.value'
+  loop:
+    - value: "{{ nginx.deploy_type }}"

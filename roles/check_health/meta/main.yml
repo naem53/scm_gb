@@ -1,0 +1,10 @@
+galaxy_info:
+  role_name: check_health
+  description: check health
+  author: naem
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: linux
+      versions:
+        - debian

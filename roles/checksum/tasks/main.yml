@@ -1,0 +1,11 @@
+---
+- name: (checksum) check checksum
+  ansible.builtin.get_url:
+    url: http://localhost/file
+    dest: /etc/foo.conf
+    checksum: md5:ba1f2511fc30423bdbb183fe33f3dd0f
+  register: result
+
+- name: (checksum) print result - check checksum
+  debug:
+    var: result

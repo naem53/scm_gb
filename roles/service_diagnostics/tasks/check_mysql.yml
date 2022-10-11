@@ -1,0 +1,20 @@
+---
+- name: (mysql) check listen port
+  wait_for:
+    host: 127.0.0.1
+    port: 3306
+    delay: 5
+  register: result
+
+- name: (mysql) print result - check listen port
+  debug:
+    var: result.state
+
+- name: (mysql) check run service
+  ansible.builtin.shell:
+    cmd: systemctl status mysql
+  register: result
+
+- name: (mysql) print result - check run service
+  debug:
+    var: result.stdout_lines
